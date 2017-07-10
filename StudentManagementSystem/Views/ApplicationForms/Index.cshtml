@@ -1,0 +1,49 @@
+﻿@model StudentManagementSystem.Models.Application.ViewModel.ApplicationFormIndexViewModel
+
+@{
+    ViewBag.Title = "Application List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of applications</h2>
+
+<div class="row">
+    @if (Model.ApplicationForms.Any())
+    {
+        foreach (var item in Model.ApplicationForms)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title">@Html.ActionLink(@item.Student.Name.ToUpper(), "Details", new {id = item.Id})</h4>
+                    </header><!-- .widget-header -->
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <h4 class="text-primary m-b-md">@item.Department.Name</h4>
+                        <p class="text-muted">@item.AboutYou</p>
+
+                        @{
+                            var studentStatus = Model.ApplicationStatuses.First(f => f.ApplicationFormId == item.Id).IsAccepted;
+                            var stu = studentStatus != null && studentStatus.Value ? "approved" : "rejected";
+                        }
+                        @if (studentStatus == null)
+                        {
+                            @Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @class = "btn btn-success btn-sm", @style = "margin-right: 5px" })
+                            
+                            @Html.ActionLink("Reject", "Reject", new {id = item.Id}, new {@class = "btn btn-danger btn-sm"})
+                        }
+                        else
+                        {                           
+                            <p>Application reviewed, student is @stu</p>
+                        }
+                    </div><!-- .widget-body -->
+                </div><!-- .widget -->
+            </div>
+        }
+    }
+    else
+    {
+        <p>No Applications yet</p>
+    }
+    
+</div>

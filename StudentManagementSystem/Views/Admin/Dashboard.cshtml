@@ -1,0 +1,82 @@
+﻿@model StudentManagementSystem.Models.Application.ViewModel.AdminIndexViewModel
+@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="app-content" style="margin-top: 30px">
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="widget p-md clearfix">
+                <div class="pull-left">
+                    <h3 class="widget-title">Welcome to CWG School</h3>
+                    <small class="text-color">Number of student</small>
+                </div>
+                <span class="pull-right fz-lg fw-500 counter" data-plugin="counterUp">@Model.AllStudents.Count</span>
+            </div><!-- .widget -->
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="widget p-md clearfix">
+                <div class="pull-left">
+                    <h3 class="widget-title">Teachers</h3>
+                    <small class="text-color">Total teachers in school</small>
+                </div>
+                <span class="pull-right fz-lg fw-500 counter" data-plugin="counterUp">@Model.Teachers.Count</span>
+            </div><!-- .widget -->
+        </div>
+    </div><!-- .row -->
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="widget stats-widget">
+                <div class="widget-body clearfix">
+                    <div class="pull-left">
+                        <h3 class="widget-title text-primary"><span class="counter" data-plugin="counterUp">@Model.Departments.Count</span></h3>
+                        <small class="text-color">Total Department</small>
+                    </div>
+                    <span class="pull-right big-icon watermark"><i class="fa fa-paperclip"></i></span>
+                </div>
+                <footer class="widget-footer bg-primary">
+                    <small></small>
+                    <span class="small-chart pull-right" data-plugin="sparkline" data-options="[4,3,5,2,1], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"><canvas width="33" height="16" style="display: inline-block; width: 33px; height: 16px; vertical-align: top;"></canvas></span>
+                </footer>
+            </div><!-- .widget -->
+        </div>        
+
+        <div class="col-md-4 col-sm-6">
+            <div class="widget stats-widget">
+                <div class="widget-body clearfix">
+                    <div class="pull-left">
+                        <h3 class="widget-title text-success"><span class="counter" data-plugin="counterUp">@Model.AcceptedStudents.Count</span></h3>
+                        <small class="text-color">Total Approved</small>
+                    </div>
+                    <span class="pull-right big-icon watermark"><i class="fa fa-unlock-alt"></i></span>
+                </div>
+                <footer class="widget-footer bg-success">
+                    <small></small>
+                    <span class="small-chart pull-right" data-plugin="sparkline" data-options="[2,4,3,4,3], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"><canvas width="33" height="16" style="display: inline-block; width: 33px; height: 16px; vertical-align: top;"></canvas></span>
+                </footer>
+            </div><!-- .widget -->
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="widget stats-widget">
+                <div class="widget-body clearfix">
+                    <div class="pull-left">
+                        <h3 class="widget-title text-warning"><span class="counter" data-plugin="counterUp">@Model.PendingStudents.Count</span></h3>
+                        <small class="text-color">Total Pending Student</small>
+                    </div>
+                    <span class="pull-right big-icon watermark"><i class="fa fa-file-text-o"></i></span>
+                </div>
+                <footer class="widget-footer bg-warning">
+                    <small></small>
+                    <span class="small-chart pull-right" data-plugin="sparkline" data-options="[5,4,3,5,2],{ type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"><canvas width="33" height="16" style="display: inline-block; width: 33px; height: 16px; vertical-align: top;"></canvas></span>
+                </footer>
+            </div><!-- .widget -->
+        </div>
+    </div><!-- .row -->
+
+    
+    
+</section>

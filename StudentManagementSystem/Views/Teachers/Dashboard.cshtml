@@ -1,0 +1,50 @@
+﻿@model StudentManagementSystem.Models.Application.ViewModel.TeacherDashboardViewModel
+
+@{
+    ViewBag.Title = "Teacher Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="profile-header">
+    <div class="profile-cover">
+        <div class="text-center">
+            <h4 class="profile-info-name m-b-lg"><a href="javascript:void(0)" class="title-color">@Model.Teacher.Name</a></h4>
+            <div>
+                <a href="javascript:void(0)" class="m-r-xl theme-color"><i class="fa fa-location-arrow m-r-xs"></i> @Model.Teacher.Email</a>
+                <a href="javascript:void(0)" class="theme-color" style="padding-right: 50px;"><i class="fa fa-user m-r-xs"></i>@Model.Teacher.MobileNumber</a>               
+                <a href="@Url.Action("ChangePassword", "Manage")" class="theme-color btn btn-sm btn-purple" style="color: white"> <i class="fa fa-check-circle-o m-r-xs"></i> Change Password</a>
+            </div>
+        </div>
+    </div><!-- .profile-cover -->
+
+
+    <h4 class="text-dark" style="margin-top: 40px; margin-bottom: 20px">Courses</h4>
+    @if (Model.Courses != null)
+    {
+        <div class="row" style="">
+            @foreach (var c in Model.Courses)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <h4 class="widget-title">Course Details</h4>
+                        </header><!-- .widget-header -->
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <h4 class="m-b-md">@c.Name</h4>
+                            <h5>Computer science</h5>
+                            <p class="text-muted m-b-lg">@c.Description</p>
+                        </div><!-- .widget-body -->
+                    </div><!-- .widget -->
+                </div>
+            }
+
+        </div>
+        <!-- .row -->
+    }
+    else
+    {
+        <p>No course </p>
+    }
+
+</div><!-- .profile-header -->

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<StudentManagementSystem.Models.Application.Course>
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <h4 class="widget-title">Course Details</h4>
+                        </header><!-- .widget-header -->
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <h4 class="m-b-md">@item.Name</h4>
+                            <h5>@item.Department.Name</h5>
+                            <p class="text-muted m-b-lg">@item.Description</p>
+                        </div><!-- .widget-body -->
+                    </div><!-- .widget -->
+                </div><!-- END column -->
+            }
+        </div><!-- .row -->
+    </section><!-- #dash-content -->
+</div>
+
+@*
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+*@

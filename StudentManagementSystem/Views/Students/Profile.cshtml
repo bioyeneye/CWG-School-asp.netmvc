@@ -1,0 +1,176 @@
+﻿@model StudentManagementSystem.Models.Application.ViewModel.StudentProfileViewModel
+
+@{
+    ViewBag.Title = "Student Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="profile-header">
+    <div class="profile-cover">
+        <div class="text-center">
+            <h4 class="profile-info-name m-b-lg"><a href="javascript:void(0)" class="title-color">@Model.Student.Name</a></h4>
+            <div>
+                <a href="javascript:void(0)" class="m-r-xl theme-color"><i class="fa fa-location-arrow m-r-xs"></i> @Model.Student.Address</a>
+                <a href="javascript:void(0)" class="theme-color btn btn-sm btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-check-circle-o m-r-xs"></i> Check Status</a>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title text-left" id="myModalLabel">Application Status Preview</h4>
+                            </div>
+                            <div class="modal-body text-justify">
+                                @if (Model.ApplicationForm == null)
+                                {
+                                    <span>No application with the user : <strong>@Model.Student.Name.ToUpper()</strong>, Kind apply now</span>
+                                }
+                                else
+                                {
+                                    if (Model.ApplicationStatus.IsAccepted == null)
+                                    {
+                                        <span><strong>Application is pending</strong></span>
+                                    }
+                                    if (Model.ApplicationStatus.IsAccepted != null && Model.ApplicationStatus.IsAccepted.Value)
+                                    {
+                                        <span><strong>Application is approved, Please register for your courses</strong></span>
+                                    }
+                                    if (Model.ApplicationStatus.IsAccepted != null && !Model.ApplicationStatus.IsAccepted.Value)
+                                    {
+                                        <span><strong>Application is rejected</strong></span>
+                                    }
+                                }
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .profile-cover -->
+
+        <div class="promo-footer">
+            <div class="row no-gutter">
+                <div class="col-sm-2 col-sm-offset-3 col-xs-6 promo-tab">
+                    <div class="text-center">
+                        <small>Status</small>
+                        <h4 class="m-0 m-t-xs">
+                            @if (Model.ApplicationForm == null)
+                            {
+                                <span>No application </span>
+                            }
+                            else
+                            {
+                                if (Model.ApplicationStatus.IsAccepted == null)
+                                {
+                                    <span><strong>Pending</strong></span>
+                                }
+                                if (Model.ApplicationStatus.IsAccepted != null && Model.ApplicationStatus.IsAccepted.Value)
+                                {
+                                    <span>Accepted</span>
+                                }
+                                if (Model.ApplicationStatus.IsAccepted != null && !Model.ApplicationStatus.IsAccepted.Value)
+                                {
+                                    <span>Rejected</span>
+                                }
+                            }
+                        </h4>
+
+                    </div>
+                </div>
+                <div class="col-sm-2 col-xs-6 promo-tab">
+                    
+                    
+                </div>
+                <div class="col-sm-2 col-xs-12 promo-tab">
+                    <div class="text-center">
+                        <small>Department</small>
+                        <h4 class="m-0 m-t-xs">
+                            @if (Model.ApplicationForm == null)
+                            {
+                                <span>Apply for application</span>
+                            }
+                            else
+                            {
+                                if (Model.ApplicationStatus.IsAccepted == null)
+                                {
+                                    <span><strong>Pending</strong></span>
+                                }
+                                if (Model.ApplicationStatus.IsAccepted != null && Model.ApplicationStatus.IsAccepted.Value)
+                                {
+                                    <span>@Model.ApplicationForm.Department.Name</span>
+                                }
+                                if (Model.ApplicationStatus.IsAccepted != null && !Model.ApplicationStatus.IsAccepted.Value)
+                                {
+                                    <span>No Deprtment</span>
+                                }
+                            }
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .promo-footer -->
+
+        @*<h4 class="text-dark" style="margin-top: 40px; margin-bottom: 20px">Registered Courses</h4>
+        <div class="row" style="">
+
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title">Course Details</h4>
+                    </header><!-- .widget-header -->
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <h4 class="m-b-md">Artificial Interlligence</h4>
+                        <h5>Computer science</h5>
+                        <p class="text-muted m-b-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat officiis aperiam incidunt.</p>
+                    </div><!-- .widget-body -->
+                </div><!-- .widget -->
+            </div><!-- END column -->
+
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title">Course Details</h4>
+                    </header><!-- .widget-header -->
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <h4 class="m-b-md">Artificial Interlligence</h4>
+                        <h5>Computer science</h5>
+                        <p class="text-muted m-b-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat officiis aperiam incidunt.</p>
+                    </div><!-- .widget-body -->
+                </div><!-- .widget -->
+            </div><!-- END column -->
+
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title">Course Details</h4>
+                    </header><!-- .widget-header -->
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <h4 class="m-b-md">Artificial Interlligence</h4>
+                        <h5>Computer science</h5>
+                        <p class="text-muted m-b-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat officiis aperiam incidunt.</p>
+                    </div><!-- .widget-body -->
+                </div><!-- .widget -->
+            </div><!-- END column -->
+            <div class="col-md-3 col-sm-6">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title">Course Details</h4>
+                    </header><!-- .widget-header -->
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <h4 class="m-b-md">Artificial Interlligence</h4>
+                        <h5>Computer science</h5>
+                        <p class="text-muted m-b-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat officiis aperiam incidunt.</p>
+                    </div><!-- .widget-body -->
+                </div><!-- .widget -->
+            </div><!-- END column -->
+            <!-- new row -->
+        </div><!-- .row -->*@
+
+    </div><!-- .profile-header -->

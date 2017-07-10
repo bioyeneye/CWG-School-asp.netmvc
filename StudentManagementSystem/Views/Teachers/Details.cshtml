@@ -1,0 +1,75 @@
+﻿@model StudentManagementSystem.Models.Application.ViewModel.TeacherDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Teacher</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.MobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.MobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Email)
+        </dd>
+
+    </dl>
+
+    <div class="row">
+        
+        @if (@Model.Courses != null)
+        {
+            <h4 style="margin-left: 12px;">Lecturer's Courses</h4>
+            foreach (var item in @Model.Courses)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <h4 class="widget-title">Course Details</h4>
+                        </header><!-- .widget-header -->
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <h4 class="m-b-md">@item.Name</h4>
+                            <h5>@item.Description</h5>
+                        </div><!-- .widget-body -->
+                    </div><!-- .widget -->
+                </div>
+                <!-- END column -->
+            }
+        }
+        else
+        {
+            <p>Lecturer has no course yet</p>
+        }
+
+
+    </div><!-- .row -->
+</div>
+
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

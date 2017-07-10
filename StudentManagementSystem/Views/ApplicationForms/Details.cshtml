@@ -1,0 +1,49 @@
+﻿@model StudentManagementSystem.Models.Application.ViewModel.ApplicationDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ApplicationForm</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationForm.AboutYou)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationForm.AboutYou)
+        </dd>
+
+    </dl>
+</div>
+
+@{
+    var studentStatus = Model.ApplicationStatus.IsAccepted;
+    var stu = studentStatus != null && studentStatus.Value ? "approved" : "rejected";
+}
+@if (studentStatus == null)
+{
+    @Html.ActionLink("Approve", "Approve", new { id = Model.ApplicationForm.Id }, new { @class = "btn btn-success btn-sm", @style = "margin-right: 5px" })
+
+    @Html.ActionLink("Reject", "Reject", new { id = Model.ApplicationForm.Id }, new { @class = "btn btn-danger btn-sm" })
+}
+else
+{
+    <p>Application reviewed, student is @stu</p>
+}
+<p>    
+    @Html.ActionLink("Back to List", "Index")
+</p>
